@@ -105,6 +105,37 @@
           }
         }
       }
+    },
+    "free-bot-lib": {
+      "projectType": "library",
+      "root": "projects/free-bot-lib",
+      "sourceRoot": "projects/free-bot-lib/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/free-bot-lib/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/free-bot-lib/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/free-bot-lib/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/free-bot-lib/src/test.ts",
+            "tsConfig": "projects/free-bot-lib/tsconfig.spec.json",
+            "karmaConfig": "projects/free-bot-lib/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "free-bot-ui"

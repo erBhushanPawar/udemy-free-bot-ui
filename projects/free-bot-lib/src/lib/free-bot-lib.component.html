@@ -1,0 +1,130 @@
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
+<div *ngIf="!isMinimized" id="chatbox">
+    <div *ngIf="!chatView" id="friendslist">
+        <!-- <div id="topmenu">
+            <span class="friends"></span>
+            <span class="chats"></span>
+            <span class="history"></span>
+        </div> -->
+        <div *ngIf="false">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">&nbsp; Name* &nbsp; </span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">&nbsp; Email* &nbsp; </span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">&nbsp; Phone &nbsp; </span>
+                <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+            </div>
+        </div>
+        <div id="friends">
+            <div class="header">
+                <h4>Start Chatting</h4>
+                <div (click)="isMinimized=true" id="close">
+                    <div class="cy s1 s2 s3"></div>
+                    <div class="cx s1 s2 s3"></div>
+                </div>
+            </div>
+
+            <div (click)="chatView=true" class="friend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" />
+                <p>
+                    <strong>Miro Badev</strong>
+                    <br><span>mirobadev@gmail.com</span>
+                </p>
+                <div class="status available"></div>
+            </div>
+
+            <div (click)="chatView=true" class="friend">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg" />
+                <p>
+                    <strong>Martin Joseph</strong>
+                    <br><span>marjoseph@gmail.com</span>
+                </p>
+                <div class="status away"></div>
+            </div>
+
+
+            <!-- <div id="search">
+                <input type="text" id="searchfield" value="Search contacts..." />
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <div *ngIf="chatView" id="chatview" class="p1" style="display: block;">
+        <div id="profile" class="animate">
+
+            <div (click)="chatView=false" id="close">
+                <div class="cy s1 s2 s3"></div>
+                <div class="cx s1 s2 s3"></div>
+            </div>
+
+            <p class="animate">Bhushan Pawar</p>
+            <span>support person</span>
+        </div>
+        <div id="chat-messages" class="animate">
+            <label>Today</label>
+
+            <div *ngFor="let m of fbls.msgs" [ngClass]="{'right':m.isSent}" class="message">
+                <img *ngIf="m.isSent" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg">
+                <img *ngIf="!m.isSent" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg">
+                <div class="bubble">
+                    {{m.msg}}
+                    <div class="corner"></div>
+                    <span>{{m.sentOn|date:'short'}}</span>
+                </div>
+            </div>
+
+            <!-- <div class="message right">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg">
+                <div class="bubble">
+                    Can you share a link for the tutorial?
+                    <div class="corner"></div>
+                    <span>1 min</span>
+                </div>
+            </div>
+
+            <div class="message">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg">
+                <div class="bubble">
+                    Yeah, hold on
+                    <div class="corner"></div>
+                    <span>Now</span>
+                </div>
+            </div>
+
+            <div class="message right">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/2_copy.jpg">
+                <div class="bubble">
+                    Can you share a link for the tutorial?
+                    <div class="corner"></div>
+                    <span>1 min</span>
+                </div>
+            </div>
+
+            <div class="message">
+                <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg">
+                <div class="bubble">
+                    Yeah, hold on
+                    <div class="corner"></div>
+                    <span>Now</span>
+                </div>
+            </div> -->
+
+        </div>
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/245657/1_copy.jpg" class="floatingImg"
+            style="top: 20px; width: 68px; left: 108px;">
+        <div id="sendmessage">
+            <input [(ngModel)]="msgText" (keyup.enter)="sendMessage()" type="text" value="Send message...">
+            <button (click)="sendMessage()" id="send"></button>
+        </div>
+
+    </div>
+</div>
+
+<button *ngIf="isMinimized" (click)="isMinimized=false" class="btn-open-chat">Need Help?</button>
