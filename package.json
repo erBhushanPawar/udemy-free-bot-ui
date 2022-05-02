@@ -7,7 +7,10 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lib-deploy": "ng build free-bot-lib && cd dist/free-bot-lib/ && npm publish"
+    "lib-deploy": "ng build free-bot-lib && cd dist/free-bot-lib/ && npm publish",
+    "build:elements": "ng build --prod --project elements --output-hashing none && npm run pack:elements && cp projects/elements/package.json dist/elements",
+    "pack:elements": "cat ./dist/elements/{runtime,polyfills,main}.js > dist/elements/free-mqtt-bot-lib-elements.js && ls -lah dist/elements/free-mqtt-bot-lib-elements.js",
+    "build:components": "ng build --prod --project components"
   },
   "private": true,
   "dependencies": {
@@ -15,10 +18,12 @@
     "@angular/common": "~12.2.0",
     "@angular/compiler": "~12.2.0",
     "@angular/core": "~12.2.0",
+    "@angular/elements": "^12.2.16",
     "@angular/forms": "~12.2.0",
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "document-register-element": "^1.7.2",
     "ngx-mqtt": "^9.0.5",
     "ngx-mqtt-chat": "0.0.23",
     "rxjs": "~6.6.0",
